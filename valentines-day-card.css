@@ -1,0 +1,203 @@
+body {
+  background-color: #ffdbf0;
+  margin: 0;
+  padding: 20px;
+  font-family: 'Amatic SC', cursive;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.container {
+  text-align: center;
+}
+
+.title {
+  font-size: 4rem;
+  color: #d23669;
+  margin-bottom: 2rem;
+}
+
+/* --- ESTILOS DEL SOBRE --- */
+.envelope-wrapper {
+  position: relative;
+  cursor: pointer;
+}
+
+.envelope {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  margin: auto;
+  background-color: #C9D0D2;
+  z-index: 1;
+  /* Animación 'tossing' por defecto */
+  animation: tossing 1.3s ease-in-out infinite;
+}
+
+.envelope-wrapper:hover .envelope {
+  /* Pausar la animación al pasar el mouse para facilitar el clic */
+  animation-play-state: paused;
+}
+
+
+/* --- SOLAPAS DEL SOBRE (FLAPS) --- */
+.envelope__side {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+.envelope__side--bottom {
+  bottom: 0;
+  left: 0;
+  border-width: 0 150px 100px 150px;
+  border-color: transparent transparent #e0e6e8 transparent;
+  z-index: 1;
+}
+
+.envelope__side--left {
+  left: 0;
+  top: 0;
+  border-width: 100px 0 100px 150px;
+  border-color: transparent transparent transparent #dde1e2;
+  z-index: 3;
+}
+
+.envelope__side--right {
+  right: 0;
+  top: 0;
+  border-width: 100px 150px 100px 0;
+  border-color: transparent #dde1e2 transparent transparent;
+  z-index: 3;
+}
+
+.envelope__side--top {
+  top: 0;
+  left: 0;
+  border-width: 100px 150px 0 150px;
+  border-color: #ecf0f1 transparent transparent transparent;
+  transform-origin: top center;
+  z-index: 5;
+  /* La solapa superior debe estar encima de todo */
+  /* Transición para abrir y cerrar */
+  transition: transform 0.5s ease-in-out;
+}
+
+/* --- LA TARJETA INTERIOR --- */
+.envelope__card {
+  position: absolute;
+  bottom: 0;
+  left: 25px;
+  width: 250px;
+  height: 280px;
+  background: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  box-sizing: border-box;
+  z-index: 2;
+  /* Debajo de las solapas laterales y superior */
+
+  /* Estado inicial: oculta */
+  transform: translateY(0) scale(0.8);
+  opacity: 0;
+  transform-origin: bottom center;
+
+  /* Transición para salir y entrar */
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.4s ease-in-out;
+}
+
+.envelope__card-text {
+  padding: 5px 0;
+  font-size: 18px;
+  line-height: 1.4;
+  color: #333;
+  margin: 0;
+  font-weight: bold;
+}
+
+.envelope__card-text.signature {
+  margin-top: 15px;
+  font-style: normal;
+  font-size: 18px;
+  color: #d23669;
+}
+
+/* --- CORAZÓN (SELLO) --- */
+.heart {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  fill: #d23669;
+  z-index: 6;
+  /* El corazón está encima de todo */
+  transition: all 0.5s ease-in-out;
+}
+
+/* --- ESTADO 'ABIERTO' --- */
+.envelope.open {
+  animation: none;
+  /* Detiene la animación de balanceo cuando está abierto */
+}
+
+.envelope.open .envelope__side--top {
+  /* Gira la solapa superior para abrirla */
+  transform: rotateX(180deg);
+  z-index: 0;
+}
+
+.envelope.open .envelope__card {
+  /* Mueve la tarjeta hacia arriba y la hace visible */
+  transform: translateY(-220px) scale(1.15);
+  opacity: 1;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  /* La tarjeta sale DESPUÉS de que la solapa se abra */
+  transition-delay: 0.2s;
+}
+
+.envelope.open .heart {
+  /* El corazón se desvanece al abrir */
+  opacity: 0;
+  transform: translateY(20px) scale(0.5);
+}
+
+/* --- BOTÓN SIGUIENTE PÁGINA --- */
+.next-page-btn {
+  margin-top: 40px;
+  padding: 12px 25px;
+  background-color: #d23669;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  font-family: 'Amatic SC', cursive;
+  font-weight: bold;
+}
+
+.next-page-btn:hover {
+  background-color: #a5274f;
+  transform: scale(1.05);
+}
+
+/* --- ANIMACIÓN DE BALANCEO --- */
+@keyframes tossing {
+  0% {
+    transform: rotate(-4deg);
+  }
+
+  50% {
+    transform: rotate(4deg);
+  }
+
+  100% {
+    transform: rotate(-4deg);
+  }
+}
