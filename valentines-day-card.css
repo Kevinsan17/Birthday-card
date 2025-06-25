@@ -38,11 +38,6 @@ body {
   animation: tossing 1.3s ease-in-out infinite;
 }
 
-.envelope-wrapper:hover .envelope {
-  /* Pausar la animación al pasar el mouse para facilitar el clic */
-  animation-play-state: paused;
-}
-
 
 /* --- SOLAPAS DEL SOBRE (FLAPS) --- */
 .envelope__side {
@@ -200,5 +195,10 @@ body {
 
   100% {
     transform: rotate(-4deg);
+  }
+}
+@media (width < 784px) {
+  .title {
+    font-size: 3rem;
   }
 }
