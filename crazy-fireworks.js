@@ -163,7 +163,7 @@ window.addEventListener("load", function () {
     // Hacemos la fuente un poco más pequeña para que quepa bien el texto
     const fontSize = Math.min(60, window.innerWidth / 12);
     const lineHeight = fontSize * 1.1;
-    ctx.font = `bold ${fontSize}px 'Amatic SC', cursive`;
+    ctx.font = `bold ${fontSize}px 'poppins', sans-serif`;
     ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
